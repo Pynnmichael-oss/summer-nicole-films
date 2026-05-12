@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact &amp; Inquire — Summer Nicole Films</title>
+  <meta name="description" content="Reach out to Summer Nicole Films. Tell me about your wedding day. Texas and nationwide." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .contact-page-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - var(--nav-h));
+      align-items: stretch;
+    }
+
+    .contact-left {
+      padding: var(--space-20) var(--space-16) var(--space-20) var(--space-8);
+      max-width: 680px;
+      justify-self: end;
+      width: 100%;
+    }
+
+    .contact-right {
+      position: sticky;
+      top: var(--nav-h);
+      height: calc(100vh - var(--nav-h));
+      overflow: hidden;
+    }
+
+    .contact-right .ph {
+      height: 100%;
+      aspect-ratio: unset;
+      background: linear-gradient(160deg, #DDD4C6 0%, #C4B49A 50%, #B8A484 100%);
+    }
+
+    @media (max-width: 900px) {
+      .contact-page-layout {
+        grid-template-columns: 1fr;
+      }
+      .contact-right {
+        display: none;
+      }
+      .contact-left {
+        padding: var(--space-12) var(--space-8);
+        max-width: 100%;
+        justify-self: unset;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-left {
+        padding: var(--space-10) var(--space-5);
+      }
+    }
+
+    /* Success message */
+    .form-success {
+      display: none;
+      padding: var(--space-8) 0;
+    }
+
+    .form-success.show {
+      display: block;
+    }
+
+    .form-success p {
+      font-family: var(--font-display);
+      font-size: var(--size-xl);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--color-text);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav class="nav nav--solid" aria-label="Primary navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">Summer Nicole Films</a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="films.html">Films</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html" class="nav__cta">Inquire</a></li>
+      </ul>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay nav -->
+  <div class="nav__overlay" role="dialog" aria-label="Navigation menu">
+    <button class="nav__overlay-close" aria-label="Close menu">Close</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="films.html">Films</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Inquire</a>
+  </div>
+
+  <!-- ============================================================
+       MAIN CONTACT LAYOUT
+       ============================================================ -->
+  <main style="padding-top: var(--nav-h);">
+    <div class="contact-page-layout">
+
+      <!-- LEFT COLUMN: Form -->
+      <div class="contact-left fade-in">
+
+        <div style="margin-bottom: var(--space-10);">
+          <p class="eyebrow" style="margin-bottom: var(--space-4);">Let's connect</p>
+          <h1 class="display-lg" style="margin-bottom: var(--space-6);">Let's Begin.</h1>
+          <p class="body-lg" style="color: var(--color-text-muted);">
+            Tell me about your day. I'd love to hear everything — the venue, the vibe, the way you feel about each other. I respond to every inquiry personally, and I'll get back to you within 48 hours.
+          </p>
+        </div>
+
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/XXXXXXXX"
+          method="POST"
+          novalidate
+          id="contact-form"
+          aria-label="Wedding inquiry form"
+        >
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="given-name" />
+            </div>
+            <div class="form-field">
+              <label for="partner-name">Partner's Name</label>
+              <input type="text" id="partner-name" name="partner_name" placeholder="Their name" required autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" required autocomplete="email" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="wedding-date">Wedding Date</label>
+              <input type="date" id="wedding-date" name="wedding_date" />
+            </div>
+            <div class="form-field">
+              <label for="location">Wedding Location</label>
+              <input type="text" id="location" name="location" placeholder="City, State" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="services">What are you interested in?</label>
+            <select id="services" name="services">
+              <option value="" disabled selected>Select a service</option>
+              <option value="photography">Wedding Photography</option>
+              <option value="films">Wedding Films</option>
+              <option value="photo-film">Photography + Films</option>
+              <option value="couples">Couples &amp; Engagements</option>
+              <option value="other">Not sure yet</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="referral">How did you hear about me?</label>
+            <select id="referral" name="referral">
+              <option value="" disabled selected>Select one</option>
+              <option value="instagram">Instagram</option>
+              <option value="google">Google</option>
+              <option value="referral">Friend or vendor referral</option>
+              <option value="wedding-wire">WeddingWire / The Knot</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="message">Tell me about your day</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="The venue, the vibe, what matters most to you — anything you want to share."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Send It →</button>
+
+        </form>
+
+        <!-- Success state -->
+        <div class="form-success" id="form-success" role="status" aria-live="polite">
+          <p>Thank you — I'll be in touch soon.</p>
+        </div>
+
+        <!-- Direct contact info -->
+        <div style="margin-top: var(--space-16); padding-top: var(--space-10); border-top: 1px solid var(--color-rule);">
+          <p class="eyebrow" style="margin-bottom: var(--space-6);">Prefer to reach out directly?</p>
+          <div class="contact-info__item">
+            <span class="contact-info__label">Email</span>
+            <a href="mailto:hello@summernicolefilms.com" class="contact-info__value" style="transition: color var(--ease-fast);"
+               onmouseover="this.style.color='var(--color-accent)'" onmouseout="this.style.color=''">
+              hello@summernicolefilms.com
+            </a>
+          </div>
+          <div class="contact-info__item" style="margin-top: var(--space-4);">
+            <span class="contact-info__label">Instagram</span>
+            <span class="contact-info__value">@summernicolefilms</span>
+          </div>
+          <p class="body-sm" style="color: var(--color-text-muted); margin-top: var(--space-6); max-width: 400px;">
+            I respond to every message personally. Response time is typically within 24–48 hours, often faster. If it's urgent, feel free to say so.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: Image -->
+      <div class="contact-right" aria-hidden="true">
+        <div class="ph" role="presentation"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container--wide">
+      <div class="footer__grid">
+        <div>
+          <p class="footer__brand-name">Summer Nicole Films</p>
+          <p class="footer__tagline">For the lovers of nostalgia.</p>
+        </div>
+        <div>
+          <p class="footer__col-label">Navigate</p>
+          <ul class="footer__links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="films.html">Films</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Inquire</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-label">Say hello</p>
+          <p class="footer__contact-item">hello@summernicolefilms.com</p>
+          <p class="footer__contact-item">@summernicolefilms</p>
+          <p class="footer__contact-item" style="margin-top: var(--space-4); color: rgba(245,240,235,0.4); font-size: var(--size-xs); letter-spacing: 0.08em;">Texas based · traveling nationwide</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2025 Summer Nicole Films &nbsp;·&nbsp; Texas &amp; Beyond</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    /* Simple client-side form UX (Formspree handles actual submission) */
+    (function () {
+      const form    = document.getElementById('contact-form');
+      const success = document.getElementById('form-success');
+
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        /* Let Formspree handle real submission — this just shows a message
+           if JS intercepts (e.g. during local preview without Formspree). */
+        const btn = form.querySelector('.btn-submit');
+        if (btn) {
+          btn.textContent = 'Sending…';
+          btn.disabled = true;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
