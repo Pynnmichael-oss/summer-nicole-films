@@ -1,0 +1,12 @@
+{
+  "name": "summer-nicole-films",
+  "version": "1.0.0",
+  "description": "Summer Nicole Films — wedding photography & films website",
+  "private": true,
+  "scripts": {
+    "deploy": "gh-pages -d . -t true"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}

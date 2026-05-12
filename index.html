@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summer Nicole Films — Wedding Photography & Films · Texas</title>
+  <meta name="description" content="Summer Nicole Films — Texas-based wedding photographer and filmmaker. Documentary, nostalgic, real. For the lovers of nostalgia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">Summer Nicole Films</a>
+      <ul class="nav__links" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="films.html">Films</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html" class="nav__cta">Inquire</a></li>
+      </ul>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay nav -->
+  <div class="nav__overlay" role="dialog" aria-label="Navigation menu">
+    <button class="nav__overlay-close" aria-label="Close menu">Close</button>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="films.html">Films</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Inquire</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero__bg"></div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Texas &amp; beyond · Est. 2018</p>
+      <h1 class="hero__headline">
+        photo + films<br />
+        <em>for the lovers<br />of nostalgia</em>
+      </h1>
+      <p class="hero__sub">Wedding Photography &nbsp;·&nbsp; Wedding Films &nbsp;·&nbsp; Couples</p>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-indicator__line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INTRO
+       ============================================================ -->
+  <section class="section fade-in" aria-labelledby="intro-heading">
+    <div class="container">
+      <div class="intro-block">
+        <div class="rule" aria-hidden="true"></div>
+        <p class="eyebrow" style="margin-bottom: var(--space-5);">The approach</p>
+        <h2 id="intro-heading" class="display-md" style="margin-bottom: var(--space-8);">
+          Your wedding day is one of the only days you'll live entirely inside a feeling.
+        </h2>
+        <p class="body-lg" style="color: var(--color-text-muted);">
+          I'm here to make sure you can go back to it. Not just see it — but actually feel it again. The way your hands shook. The way time slowed when you saw each other. I work quiet and close, so nothing performed, nothing stiff. Just the real stuff, saved.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICES ROW
+       ============================================================ -->
+  <section class="section section--alt" aria-labelledby="services-heading">
+    <div class="container">
+      <div style="margin-bottom: var(--space-12);" class="fade-in">
+        <p class="eyebrow" style="margin-bottom: var(--space-4);">What I offer</p>
+        <h2 id="services-heading" class="display-md">The work.</h2>
+      </div>
+      <div class="services-row stagger-children">
+
+        <article class="service-card">
+          <div class="ph service-card__img ph--portrait" role="img" aria-label="Wedding photography sample"></div>
+          <p class="service-card__eyebrow">01</p>
+          <h3 class="service-card__title">Wedding Photography</h3>
+          <p class="service-card__desc">Documentary coverage that captures every honest, unguarded moment — from the quiet before to the wild after.</p>
+          <a href="services.html" class="service-card__link">Learn More →</a>
+        </article>
+
+        <article class="service-card">
+          <div class="ph service-card__img ph--portrait" style="background: linear-gradient(135deg, #DFD5C8 0%, #C9B89A 100%);" role="img" aria-label="Wedding film sample"></div>
+          <p class="service-card__eyebrow">02</p>
+          <h3 class="service-card__title">Wedding Films</h3>
+          <p class="service-card__desc">A short film made for the two of you. The vows. The looks. The music that was playing. Every beautiful, ordinary thing.</p>
+          <a href="services.html" class="service-card__link">Learn More →</a>
+        </article>
+
+        <article class="service-card">
+          <div class="ph service-card__img ph--portrait" style="background: linear-gradient(135deg, #E2D9CE 0%, #CABBA0 100%);" role="img" aria-label="Couples session sample"></div>
+          <p class="service-card__eyebrow">03</p>
+          <h3 class="service-card__title">Couples &amp; Engagements</h3>
+          <p class="service-card__desc">A session built around the two of you — relaxed, unhurried, in a place that means something.</p>
+          <a href="services.html" class="service-card__link">Learn More →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PORTFOLIO TEASER
+       ============================================================ -->
+  <section class="section section--lg" aria-labelledby="portfolio-heading">
+    <div class="container--wide">
+      <div style="margin-bottom: var(--space-10); display: flex; align-items: flex-end; justify-content: space-between;" class="fade-in">
+        <div>
+          <p class="eyebrow" style="margin-bottom: var(--space-3);">Selected work</p>
+          <h2 id="portfolio-heading" class="display-md">The portfolio.</h2>
+        </div>
+        <a href="portfolio.html" class="arrow-link" style="margin-bottom: var(--space-3);">View all →</a>
+      </div>
+      <div class="portfolio-grid portfolio-grid--teaser stagger-children">
+        <div class="pg-item" data-category="photography">
+          <div class="ph" role="img" aria-label="Wedding couple, Austin TX"></div>
+          <div class="pg-item__overlay"><span class="pg-item__label">Austin, TX</span></div>
+        </div>
+        <div class="pg-item" data-category="photography">
+          <div class="ph" role="img" aria-label="Wedding detail, Fredericksburg TX"></div>
+          <div class="pg-item__overlay"><span class="pg-item__label">Fredericksburg, TX</span></div>
+        </div>
+        <div class="pg-item" data-category="films">
+          <div class="ph" style="background: linear-gradient(135deg, #DDD4C6 0%, #C4B49A 100%);" role="img" aria-label="Wedding film, Nashville TN"></div>
+          <div class="pg-item__overlay"><span class="pg-item__label">Nashville, TN</span></div>
+        </div>
+        <div class="pg-item" data-category="photography">
+          <div class="ph" style="background: linear-gradient(135deg, #E2DAD0 0%, #D0C0A8 100%);" role="img" aria-label="Couple portrait, San Antonio TX"></div>
+          <div class="pg-item__overlay"><span class="pg-item__label">San Antonio, TX</span></div>
+        </div>
+        <div class="pg-item" data-category="photography">
+          <div class="ph" style="background: linear-gradient(135deg, #D8D0C4 0%, #C8B89C 100%);" role="img" aria-label="Wedding ceremony, Marfa TX"></div>
+          <div class="pg-item__overlay"><span class="pg-item__label">Marfa, TX</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIAL
+       ============================================================ -->
+  <section class="section testimonial-section section--alt" aria-label="Testimonial">
+    <div class="container--narrow fade-in">
+      <blockquote>
+        <p class="testimonial-quote">
+          Working with Summer was the best decision we made for our wedding day.
+        </p>
+        <cite class="testimonial-attr">— Ashlyn &amp; Jake · Austin, TX</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT TEASER
+       ============================================================ -->
+  <section class="section" aria-labelledby="about-teaser-heading">
+    <div class="container">
+      <div class="split-block fade-in">
+        <div class="ph ph--square" role="img" aria-label="Summer Nicole portrait" style="max-width: 480px;"></div>
+        <div class="split-text">
+          <p class="eyebrow">About Summer</p>
+          <h2 id="about-teaser-heading" class="display-md">Hi, I'm Summer.</h2>
+          <p>
+            I'm a Texas-based photographer and filmmaker who believes a wedding day is one of the most document-worthy things that'll ever happen to you. I shoot quietly. I stay close. I don't ask you to pose unless the light demands it.
+          </p>
+          <p style="color: var(--color-text-muted);">
+            I fell in love with film photography in college and never really came back. There's something about the warmth of it — the grain, the color — that digital has always been chasing. I bring both, because some moments deserve to live in both worlds.
+          </p>
+          <a href="about.html" class="arrow-link">Read My Story →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECOND TESTIMONIAL / FULL BLEED QUOTE
+       ============================================================ -->
+  <section class="section section--dark fade-in" aria-label="Client quote">
+    <div class="container--narrow text-center">
+      <p class="eyebrow" style="margin-bottom: var(--space-8);">From the couples</p>
+      <p class="testimonial-quote" style="color: var(--color-bg);">
+        She captured things we didn't even know were happening. Years from now, this is exactly what we'll want to see.
+      </p>
+      <span class="testimonial-attr" style="margin-top: var(--space-4); display: block;">— Mara &amp; Thomas · Fredericksburg, TX</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA STRIP
+       ============================================================ -->
+  <section class="cta-banner fade-in" aria-label="Call to action">
+    <p class="eyebrow" style="margin-bottom: var(--space-5);">Let's make something together</p>
+    <h2 class="display-md">Ready to begin?</h2>
+    <p>Tell me about your day. I'd love to hear everything.</p>
+    <a href="contact.html" class="btn-outline">Start Here →</a>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer" aria-label="Site footer">
+    <div class="container--wide">
+      <div class="footer__grid">
+        <div>
+          <p class="footer__brand-name">Summer Nicole Films</p>
+          <p class="footer__tagline">For the lovers of nostalgia.</p>
+        </div>
+        <div>
+          <p class="footer__col-label">Navigate</p>
+          <ul class="footer__links" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="films.html">Films</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Inquire</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__col-label">Say hello</p>
+          <p class="footer__contact-item">hello@summernicolefilms.com</p>
+          <p class="footer__contact-item">@summernicolefilms</p>
+          <p class="footer__contact-item" style="margin-top: var(--space-4); color: rgba(245,240,235,0.4); font-size: var(--size-xs); letter-spacing: 0.08em;">Texas based · traveling nationwide</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2025 Summer Nicole Films &nbsp;·&nbsp; Texas &amp; Beyond</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
