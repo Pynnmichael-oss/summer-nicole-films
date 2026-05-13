@@ -4,7 +4,7 @@
   "description": "Summer Nicole Films — wedding photography & films website",
   "private": true,
   "scripts": {
-    "deploy": "gh-pages -d . -t true"
+    "deploy": "gh-pages -d . --dotfiles"
   },
   "devDependencies": {
     "gh-pages": "^6.1.1"

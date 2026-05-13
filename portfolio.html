@@ -4,24 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio — Summer Nicole Films</title>
-  <meta name="description" content="Browse wedding photography and films by Summer Nicole Films — Texas and nationwide." />
+  <meta name="description" content="Wedding photography and film portfolio. Texas, nationwide, destination." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* Extra stagger for portfolio grid items */
-    .portfolio-grid--full .pg-item {
-      transition: opacity 0.4s ease;
-    }
-  </style>
 </head>
 <body>
 
-  <!-- ============================================================
-       NAVIGATION
-       ============================================================ -->
-  <nav class="nav nav--solid" aria-label="Primary navigation">
+  <nav class="nav" aria-label="Primary navigation">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo">Summer Nicole Films</a>
       <ul class="nav__links" role="list">
@@ -38,7 +29,6 @@
     </div>
   </nav>
 
-  <!-- Mobile overlay nav -->
   <div class="nav__overlay" role="dialog" aria-label="Navigation menu">
     <button class="nav__overlay-close" aria-label="Close menu">Close</button>
     <a href="index.html">Home</a>
@@ -49,123 +39,97 @@
     <a href="contact.html">Inquire</a>
   </div>
 
-  <!-- ============================================================
-       PAGE TITLE
-       ============================================================ -->
-  <div class="page-title-block fade-in">
-    <div class="container--wide">
-      <p class="eyebrow" style="margin-bottom: var(--space-4);">Selected work · 2020 – 2025</p>
-      <h1 class="display-lg">The Work.</h1>
+  <!-- PAGE TITLE -->
+  <div class="page-title-block">
+    <div class="container fade-in">
+      <p class="eyebrow" style="margin-bottom: var(--space-4);">Selected work</p>
+      <h1 class="display-xl">The Work.</h1>
     </div>
   </div>
 
-  <!-- ============================================================
-       FILTER BAR
-       ============================================================ -->
-  <div class="container--wide fade-in" style="margin-bottom: var(--space-4);">
-    <nav class="filter-bar" aria-label="Filter portfolio by category">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="photography">Photography</button>
-      <button class="filter-btn" data-filter="films">Films</button>
-    </nav>
-  </div>
-
-  <!-- ============================================================
-       PORTFOLIO GRID
-       ============================================================ -->
-  <main class="section--sm">
+  <!-- FILTER + GRID -->
+  <section class="section--sm" aria-labelledby="portfolio-heading">
     <div class="container--wide">
-      <div class="portfolio-grid portfolio-grid--full" aria-label="Portfolio images">
+      <div class="filter-bar fade-in" role="tablist" aria-label="Filter portfolio">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-filter="photography" role="tab" aria-selected="false">Photography</button>
+        <button class="filter-btn" data-filter="films" role="tab" aria-selected="false">Films</button>
+      </div>
 
-        <div class="pg-item fade-in" data-category="photography">
-          <div class="ph" role="img" aria-label="Wedding ceremony, Austin TX"
-               style="background: linear-gradient(140deg, #E8E0D6 0%, #D4C4B0 100%);"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Austin, TX · 2024</span></div>
+      <div class="portfolio-grid portfolio-grid--full" id="portfolioGrid">
+
+        <div class="pg-item" data-category="photography">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80" alt="Wedding ceremony, Hill Country TX" loading="lazy" />
+          <div class="pg-item__overlay"><span class="pg-item__label">Hill Country, TX</span></div>
         </div>
 
-        <div class="pg-item fade-in fade-in--delay-1" data-category="photography">
-          <div class="ph" role="img" aria-label="Bride portrait, Fredericksburg TX"
-               style="background: linear-gradient(140deg, #DDD4C6 0%, #C4B49A 100%);"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Fredericksburg, TX · 2024</span></div>
+        <div class="pg-item" data-category="photography">
+          <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=800&q=80" alt="Bride portrait, Austin TX" loading="lazy" />
+          <div class="pg-item__overlay"><span class="pg-item__label">Austin, TX</span></div>
         </div>
 
-        <div class="pg-item fade-in fade-in--delay-2" data-category="films">
-          <div class="ph" role="img" aria-label="Wedding film still, Nashville TN"
-               style="background: linear-gradient(140deg, #DFD8CC 0%, #C8B89C 100%);"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Nashville, TN · 2024</span></div>
+        <div class="pg-item" data-category="films">
+          <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80" alt="Wedding film still, Fredericksburg TX" loading="lazy" />
+          <div class="pg-item__overlay"><span class="pg-item__label">Fredericksburg, TX</span></div>
         </div>
 
-        <div class="pg-item fade-in fade-in--delay-3" data-category="photography">
-          <div class="ph" role="img" aria-label="Couple first look, San Antonio TX"
-               style="background: linear-gradient(140deg, #E2DAD0 0%, #CFC0A8 100%);"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">San Antonio, TX · 2024</span></div>
+        <div class="pg-item" data-category="photography">
+          <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&q=80" alt="Couple portrait, Nashville TN" loading="lazy" />
+          <div class="pg-item__overlay"><span class="pg-item__label">Nashville, TN</span></div>
         </div>
 
-        <div class="pg-item fade-in fade-in--delay-4" data-category="photography">
-          <div class="ph" role="img" aria-label="Reception dance, Marfa TX"
-               style="background: linear-gradient(140deg, #D8D0C4 0%, #C8B89C 100%);"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Marfa, TX · 2023</span></div>
+        <div class="pg-item" data-category="photography">
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80" alt="First dance, Dallas TX" loading="lazy" />
+          <div class="pg-item__overlay"><span class="pg-item__label">Dallas, TX</span></div>
         </div>
 
-        <div class="pg-item fade-in" data-category="photography">
-          <div class="ph" role="img" aria-label="Wedding details, Waco TX"
-               style="background: linear-gradient(140deg, #E0D8CC 0%, #C9B99D 100%);"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Waco, TX · 2023</span></div>
+        <div class="pg-item" data-category="films">
+          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80" alt="Sunset ceremony film, Marfa TX" loading="lazy" />
+          <div class="pg-item__overlay"><span class="pg-item__label">Marfa, TX</span></div>
         </div>
 
-        <div class="pg-item fade-in fade-in--delay-1" data-category="films">
-          <div class="ph" role="img" aria-label="Wedding film still, Charleston SC"
-               style="background: linear-gradient(140deg, #DEDAD2 0%, #C4B4A0 100%);"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Charleston, SC · 2023</span></div>
+        <div class="pg-item" data-category="photography">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600&q=80" alt="Wedding portraits, San Antonio TX" loading="lazy" />
+          <div class="pg-item__overlay"><span class="pg-item__label">San Antonio, TX</span></div>
         </div>
 
-        <div class="pg-item fade-in fade-in--delay-2" data-category="photography">
-          <div class="ph" role="img" aria-label="Couple portraits, Hill Country TX"
-               style="background: linear-gradient(140deg, #E4DDD4 0%, #D0C0A8 100%);"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Hill Country, TX · 2023</span></div>
+        <div class="pg-item" data-category="photography">
+          <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&q=80" alt="Reception, Austin TX" loading="lazy" />
+          <div class="pg-item__overlay"><span class="pg-item__label">Austin, TX</span></div>
         </div>
 
-        <div class="pg-item fade-in fade-in--delay-3" data-category="photography">
-          <div class="ph" role="img" aria-label="Ceremony details, Houston TX"
-               style="background: linear-gradient(140deg, #DCD4C8 0%, #C8B898 100%);"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Houston, TX · 2022</span></div>
+        <div class="pg-item" data-category="films">
+          <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=800&q=80" alt="Film still, Fredericksburg TX" loading="lazy" />
+          <div class="pg-item__overlay"><span class="pg-item__label">Fredericksburg, TX</span></div>
         </div>
 
-        <div class="pg-item fade-in fade-in--delay-4" data-category="photography">
-          <div class="ph" role="img" aria-label="Reception, Dallas TX"
-               style="background: linear-gradient(140deg, #E0D8CE 0%, #CABBA0 100%);"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Dallas, TX · 2022</span></div>
+        <div class="pg-item" data-category="photography">
+          <img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=800&q=80" alt="Ceremony details, Denver CO" loading="lazy" />
+          <div class="pg-item__overlay"><span class="pg-item__label">Denver, CO</span></div>
         </div>
 
-        <div class="pg-item fade-in" data-category="photography">
-          <div class="ph" role="img" aria-label="Bride and groom, Sonoma CA"
-               style="background: linear-gradient(140deg, #DDD8CE 0%, #C8BAA0 100%);"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Sonoma, CA · 2022</span></div>
+        <div class="pg-item" data-category="photography">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80" alt="Engagement session, Hill Country TX" loading="lazy" />
+          <div class="pg-item__overlay"><span class="pg-item__label">Hill Country, TX</span></div>
         </div>
 
-        <div class="pg-item fade-in fade-in--delay-1" data-category="films">
-          <div class="ph" role="img" aria-label="Wedding film still, Santa Fe NM"
-               style="background: linear-gradient(140deg, #E4DECE 0%, #D0C0A4 100%);"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Santa Fe, NM · 2021</span></div>
+        <div class="pg-item" data-category="films">
+          <img src="https://images.unsplash.com/photo-1500048993953-d23a436266cf?w=1200&q=80" alt="Wedding film, Austin TX" loading="lazy" />
+          <div class="pg-item__overlay"><span class="pg-item__label">Austin, TX</span></div>
         </div>
 
       </div>
     </div>
-  </main>
-
-  <!-- ============================================================
-       CTA
-       ============================================================ -->
-  <section class="cta-banner fade-in" aria-label="Call to action">
-    <p class="eyebrow" style="margin-bottom: var(--space-5);">Your day belongs here too</p>
-    <h2 class="display-md">Let's tell your story.</h2>
-    <p>Limited dates available for 2025 and 2026.</p>
-    <a href="contact.html" class="btn-outline">Inquire Now →</a>
   </section>
 
-  <!-- ============================================================
-       FOOTER
-       ============================================================ -->
+  <!-- CTA -->
+  <section class="cta-banner fade-in" aria-label="Call to action">
+    <p class="eyebrow" style="margin-bottom: var(--space-5);">Like what you see?</p>
+    <h2 class="display-md">Let's tell your story.</h2>
+    <p>Every image here started with someone saying yes. Yours could be next.</p>
+    <a href="contact.html" class="btn-outline">Get in touch →</a>
+  </section>
+
   <footer class="footer" aria-label="Site footer">
     <div class="container--wide">
       <div class="footer__grid">

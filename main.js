@@ -17,7 +17,7 @@
         }
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
   );
 
   document.querySelectorAll('.fade-in, .stagger-children').forEach((el) => {
@@ -37,7 +37,7 @@
         nav.classList.add('nav--solid');
         return;
       }
-      if (window.scrollY > 60) {
+      if (window.scrollY > 80) {
         nav.classList.remove('nav--transparent');
         nav.classList.add('nav--solid');
       } else {
@@ -59,14 +59,15 @@
   /* ----------------------------------------------------------
      Mobile hamburger + overlay nav
      ---------------------------------------------------------- */
-  const hamburger = document.querySelector('.nav__hamburger');
-  const overlay   = document.querySelector('.nav__overlay');
+  const hamburger    = document.querySelector('.nav__hamburger');
+  const overlay      = document.querySelector('.nav__overlay');
   const overlayClose = document.querySelector('.nav__overlay-close');
 
   function openOverlay() {
     if (!overlay) return;
     overlay.classList.add('open');
     hamburger && hamburger.classList.add('open');
+    hamburger && hamburger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   }
 
@@ -74,10 +75,11 @@
     if (!overlay) return;
     overlay.classList.remove('open');
     hamburger && hamburger.classList.remove('open');
+    hamburger && hamburger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
 
-  hamburger && hamburger.addEventListener('click', openOverlay);
+  hamburger    && hamburger.addEventListener('click', openOverlay);
   overlayClose && overlayClose.addEventListener('click', closeOverlay);
 
   overlay && overlay.querySelectorAll('a').forEach((a) => {
@@ -91,13 +93,64 @@
   /* ----------------------------------------------------------
      Active nav link
      ---------------------------------------------------------- */
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav__links a, .nav__overlay a').forEach((link) => {
     const href = link.getAttribute('href');
-    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
       link.classList.add('active');
     }
   });
+
+  /* ----------------------------------------------------------
+     Effect 3: Hero Parallax (homepage only)
+     ---------------------------------------------------------- */
+  const heroBg = document.getElementById('heroBg');
+  if (heroBg) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          heroBg.style.transform = `translateY(${window.scrollY * 0.4}px)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  /* ----------------------------------------------------------
+     Effect 2: Horizontal scroll — drag to scroll
+     ---------------------------------------------------------- */
+  const hTrack = document.getElementById('hScrollTrack');
+  if (hTrack) {
+    let isDown = false;
+    let startX, scrollLeft;
+
+    hTrack.addEventListener('mousedown', (e) => {
+      isDown = true;
+      hTrack.classList.add('dragging');
+      startX = e.pageX - hTrack.offsetLeft;
+      scrollLeft = hTrack.scrollLeft;
+    });
+
+    hTrack.addEventListener('mouseleave', () => {
+      isDown = false;
+      hTrack.classList.remove('dragging');
+    });
+
+    hTrack.addEventListener('mouseup', () => {
+      isDown = false;
+      hTrack.classList.remove('dragging');
+    });
+
+    hTrack.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x    = e.pageX - hTrack.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      hTrack.scrollLeft = scrollLeft - walk;
+    });
+  }
 
   /* ----------------------------------------------------------
      FAQ Accordion
@@ -108,13 +161,11 @@
       const answer = item.querySelector('.faq-answer');
       const isOpen = item.classList.contains('open');
 
-      // Close all
       document.querySelectorAll('.faq-item.open').forEach((openItem) => {
         openItem.classList.remove('open');
         openItem.querySelector('.faq-answer').classList.remove('open');
       });
 
-      // Toggle current
       if (!isOpen) {
         item.classList.add('open');
         answer.classList.add('open');
@@ -134,11 +185,12 @@
 
         const filter = btn.dataset.filter;
         document.querySelectorAll('.pg-item').forEach((item) => {
-          if (filter === 'all' || item.dataset.category === filter) {
-            item.style.display = '';
-            item.style.opacity = '1';
-          } else {
-            item.style.display = 'none';
+          const show = filter === 'all' || item.dataset.category === filter;
+          item.style.display = show ? '' : 'none';
+          if (show) {
+            requestAnimationFrame(() => {
+              item.style.opacity = '1';
+            });
           }
         });
       });

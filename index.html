@@ -12,9 +12,7 @@
 </head>
 <body>
 
-  <!-- ============================================================
-       NAVIGATION
-       ============================================================ -->
+  <!-- NAV -->
   <nav class="nav" aria-label="Primary navigation">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo">Summer Nicole Films</a>
@@ -32,7 +30,6 @@
     </div>
   </nav>
 
-  <!-- Mobile overlay nav -->
   <div class="nav__overlay" role="dialog" aria-label="Navigation menu">
     <button class="nav__overlay-close" aria-label="Close menu">Close</button>
     <a href="index.html">Home</a>
@@ -43,11 +40,11 @@
     <a href="contact.html">Inquire</a>
   </div>
 
-  <!-- ============================================================
-       HERO
-       ============================================================ -->
+  <!-- HERO -->
   <section class="hero" aria-label="Hero">
-    <div class="hero__bg"></div>
+    <div class="hero__bg" id="heroBg">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80" alt="" aria-hidden="true" />
+    </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
       <p class="hero__eyebrow">Texas &amp; beyond · Est. 2018</p>
@@ -57,15 +54,34 @@
       </h1>
       <p class="hero__sub">Wedding Photography &nbsp;·&nbsp; Wedding Films &nbsp;·&nbsp; Couples</p>
     </div>
+
+    <!-- Effect 4: Currently Booking Badge -->
+    <a href="contact.html" class="booking-badge" aria-label="Now booking 2025 and 2026 — inquire">
+      <svg class="booking-badge__svg" viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="58" fill="rgba(245,240,235,0.93)" />
+        <path id="bp" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" fill="none" />
+        <text>
+          <textPath href="#bp" startOffset="0%">Now Booking · 2025 &amp; 2026 · Texas &amp; Beyond · </textPath>
+        </text>
+      </svg>
+      <span class="booking-badge__arrow" aria-hidden="true">→</span>
+    </a>
+
     <div class="scroll-indicator" aria-hidden="true">
       <span>Scroll</span>
       <div class="scroll-indicator__line"></div>
     </div>
   </section>
 
-  <!-- ============================================================
-       INTRO
-       ============================================================ -->
+  <!-- Effect 5: Location Marquee -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Austin · Fredericksburg · Nashville · Dallas · Denver · Marfa · San Antonio · Destination Weddings · Texas &amp; Beyond · </span>
+      <span>Austin · Fredericksburg · Nashville · Dallas · Denver · Marfa · San Antonio · Destination Weddings · Texas &amp; Beyond · </span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
   <section class="section fade-in" aria-labelledby="intro-heading">
     <div class="container">
       <div class="intro-block">
@@ -81,9 +97,7 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       SERVICES ROW
-       ============================================================ -->
+  <!-- SERVICES ROW -->
   <section class="section section--alt" aria-labelledby="services-heading">
     <div class="container">
       <div style="margin-bottom: var(--space-12);" class="fade-in">
@@ -93,7 +107,9 @@
       <div class="services-row stagger-children">
 
         <article class="service-card">
-          <div class="ph service-card__img ph--portrait" role="img" aria-label="Wedding photography sample"></div>
+          <div class="service-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600&q=80" alt="Wedding photography — golden hour ceremony" loading="lazy" class="service-card__img" />
+          </div>
           <p class="service-card__eyebrow">01</p>
           <h3 class="service-card__title">Wedding Photography</h3>
           <p class="service-card__desc">Documentary coverage that captures every honest, unguarded moment — from the quiet before to the wild after.</p>
@@ -101,7 +117,9 @@
         </article>
 
         <article class="service-card">
-          <div class="ph service-card__img ph--portrait" style="background: linear-gradient(135deg, #DFD5C8 0%, #C9B89A 100%);" role="img" aria-label="Wedding film sample"></div>
+          <div class="service-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=1200&q=80" alt="Wedding film — documentary storytelling" loading="lazy" class="service-card__img" />
+          </div>
           <p class="service-card__eyebrow">02</p>
           <h3 class="service-card__title">Wedding Films</h3>
           <p class="service-card__desc">A short film made for the two of you. The vows. The looks. The music that was playing. Every beautiful, ordinary thing.</p>
@@ -109,7 +127,9 @@
         </article>
 
         <article class="service-card">
-          <div class="ph service-card__img ph--portrait" style="background: linear-gradient(135deg, #E2D9CE 0%, #CABBA0 100%);" role="img" aria-label="Couples session sample"></div>
+          <div class="service-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=800&q=80" alt="Couples engagement session — relaxed and natural" loading="lazy" class="service-card__img" />
+          </div>
           <p class="service-card__eyebrow">03</p>
           <h3 class="service-card__title">Couples &amp; Engagements</h3>
           <p class="service-card__desc">A session built around the two of you — relaxed, unhurried, in a place that means something.</p>
@@ -120,64 +140,70 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       PORTFOLIO TEASER
-       ============================================================ -->
-  <section class="section section--lg" aria-labelledby="portfolio-heading">
-    <div class="container--wide">
-      <div style="margin-bottom: var(--space-10); display: flex; align-items: flex-end; justify-content: space-between;" class="fade-in">
-        <div>
-          <p class="eyebrow" style="margin-bottom: var(--space-3);">Selected work</p>
-          <h2 id="portfolio-heading" class="display-md">The portfolio.</h2>
-        </div>
-        <a href="portfolio.html" class="arrow-link" style="margin-bottom: var(--space-3);">View all →</a>
+  <!-- Effect 2: Horizontal Scroll Portfolio -->
+  <section class="h-scroll-section" aria-labelledby="work-heading">
+    <div class="container fade-in">
+      <p class="eyebrow" id="work-heading" style="margin-bottom: var(--space-6);">recent work</p>
+    </div>
+    <div class="h-scroll-track" id="hScrollTrack">
+      <div class="h-scroll-item h-scroll-item--tall">
+        <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=800&q=80" alt="Wedding couple, Austin TX" loading="lazy" />
+        <div class="h-scroll-overlay"><span>Austin, TX</span></div>
       </div>
-      <div class="portfolio-grid portfolio-grid--teaser stagger-children">
-        <div class="pg-item" data-category="photography">
-          <div class="ph" role="img" aria-label="Wedding couple, Austin TX"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Austin, TX</span></div>
-        </div>
-        <div class="pg-item" data-category="photography">
-          <div class="ph" role="img" aria-label="Wedding detail, Fredericksburg TX"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Fredericksburg, TX</span></div>
-        </div>
-        <div class="pg-item" data-category="films">
-          <div class="ph" style="background: linear-gradient(135deg, #DDD4C6 0%, #C4B49A 100%);" role="img" aria-label="Wedding film, Nashville TN"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Nashville, TN</span></div>
-        </div>
-        <div class="pg-item" data-category="photography">
-          <div class="ph" style="background: linear-gradient(135deg, #E2DAD0 0%, #D0C0A8 100%);" role="img" aria-label="Couple portrait, San Antonio TX"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">San Antonio, TX</span></div>
-        </div>
-        <div class="pg-item" data-category="photography">
-          <div class="ph" style="background: linear-gradient(135deg, #D8D0C4 0%, #C8B89C 100%);" role="img" aria-label="Wedding ceremony, Marfa TX"></div>
-          <div class="pg-item__overlay"><span class="pg-item__label">Marfa, TX</span></div>
-        </div>
+      <div class="h-scroll-item">
+        <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80" alt="Wedding ceremony, Fredericksburg TX" loading="lazy" />
+        <div class="h-scroll-overlay"><span>Fredericksburg, TX</span></div>
       </div>
+      <div class="h-scroll-item h-scroll-item--tall">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80" alt="Couple portrait, Nashville TN" loading="lazy" />
+        <div class="h-scroll-overlay"><span>Nashville, TN</span></div>
+      </div>
+      <div class="h-scroll-item">
+        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80" alt="Wedding details, Dallas TX" loading="lazy" />
+        <div class="h-scroll-overlay"><span>Dallas, TX</span></div>
+      </div>
+      <div class="h-scroll-item h-scroll-item--tall">
+        <img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=800&q=80" alt="Sunset wedding, Hill Country TX" loading="lazy" />
+        <div class="h-scroll-overlay"><span>Hill Country, TX</span></div>
+      </div>
+    </div>
+    <div class="container" style="margin-top: var(--space-10);">
+      <a href="portfolio.html" class="arrow-link">View full portfolio →</a>
     </div>
   </section>
 
-  <!-- ============================================================
-       TESTIMONIAL
-       ============================================================ -->
-  <section class="section testimonial-section section--alt" aria-label="Testimonial">
+  <!-- TESTIMONIAL -->
+  <section class="section testimonial-section section--alt" aria-label="Client testimonial">
     <div class="container--narrow fade-in">
       <blockquote>
         <p class="testimonial-quote">
-          Working with Summer was the best decision we made for our wedding day.
+          Working with Summer was the best decision we made for our wedding day. Every photo feels like a memory we can actually hold.
         </p>
-        <cite class="testimonial-attr">— Ashlyn &amp; Jake · Austin, TX</cite>
+        <cite class="testimonial-attr">— Ashlyn &amp; Jake &nbsp;·&nbsp; Hill Country, TX &nbsp;·&nbsp; October 2024</cite>
       </blockquote>
     </div>
   </section>
 
-  <!-- ============================================================
-       ABOUT TEASER
-       ============================================================ -->
+  <!-- PHOTO STRIP -->
+  <div class="photo-strip fade-in" aria-hidden="true">
+    <div class="photo-strip__item">
+      <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&q=80" alt="" loading="lazy" />
+    </div>
+    <div class="photo-strip__item">
+      <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=800&q=80" alt="" loading="lazy" />
+    </div>
+    <div class="photo-strip__item">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="" loading="lazy" />
+    </div>
+  </div>
+
+  <!-- ABOUT TEASER -->
   <section class="section" aria-labelledby="about-teaser-heading">
     <div class="container">
       <div class="split-block fade-in">
-        <div class="ph ph--square" role="img" aria-label="Summer Nicole portrait" style="max-width: 480px;"></div>
+        <div class="split-block__img-wrap">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80" alt="Summer Nicole, photographer and filmmaker" loading="lazy" class="split-block__img" />
+        </div>
         <div class="split-text">
           <p class="eyebrow">About Summer</p>
           <h2 id="about-teaser-heading" class="display-md">Hi, I'm Summer.</h2>
@@ -193,22 +219,18 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       SECOND TESTIMONIAL / FULL BLEED QUOTE
-       ============================================================ -->
+  <!-- DARK QUOTE -->
   <section class="section section--dark fade-in" aria-label="Client quote">
     <div class="container--narrow text-center">
       <p class="eyebrow" style="margin-bottom: var(--space-8);">From the couples</p>
       <p class="testimonial-quote" style="color: var(--color-bg);">
         She captured things we didn't even know were happening. Years from now, this is exactly what we'll want to see.
       </p>
-      <span class="testimonial-attr" style="margin-top: var(--space-4); display: block;">— Mara &amp; Thomas · Fredericksburg, TX</span>
+      <span class="testimonial-attr" style="margin-top: var(--space-4); display: block;">— Mara &amp; Thomas &nbsp;·&nbsp; Fredericksburg, TX</span>
     </div>
   </section>
 
-  <!-- ============================================================
-       CTA STRIP
-       ============================================================ -->
+  <!-- CTA -->
   <section class="cta-banner fade-in" aria-label="Call to action">
     <p class="eyebrow" style="margin-bottom: var(--space-5);">Let's make something together</p>
     <h2 class="display-md">Ready to begin?</h2>
@@ -216,9 +238,7 @@
     <a href="contact.html" class="btn-outline">Start Here →</a>
   </section>
 
-  <!-- ============================================================
-       FOOTER
-       ============================================================ -->
+  <!-- FOOTER -->
   <footer class="footer" aria-label="Site footer">
     <div class="container--wide">
       <div class="footer__grid">

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Summer — Summer Nicole Films</title>
-  <meta name="description" content="Get to know Summer Nicole — Texas-based wedding photographer and filmmaker. Documentary, nostalgic, real." />
+  <title>About — Summer Nicole Films</title>
+  <meta name="description" content="Summer Nicole is a Texas-based wedding photographer and filmmaker. Documentary, nostalgic, real." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -12,10 +12,7 @@
 </head>
 <body>
 
-  <!-- ============================================================
-       NAVIGATION
-       ============================================================ -->
-  <nav class="nav nav--solid" aria-label="Primary navigation">
+  <nav class="nav" aria-label="Primary navigation">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo">Summer Nicole Films</a>
       <ul class="nav__links" role="list">
@@ -32,7 +29,6 @@
     </div>
   </nav>
 
-  <!-- Mobile overlay nav -->
   <div class="nav__overlay" role="dialog" aria-label="Navigation menu">
     <button class="nav__overlay-close" aria-label="Close menu">Close</button>
     <a href="index.html">Home</a>
@@ -43,124 +39,95 @@
     <a href="contact.html">Inquire</a>
   </div>
 
-  <!-- ============================================================
-       PAGE HEADER — full-width image
-       ============================================================ -->
+  <!-- PAGE HEADER IMAGE -->
   <div class="page-header">
-    <div class="ph page-header__img" role="img" aria-label="Summer Nicole behind the camera" style="background: linear-gradient(145deg, #DFD5C8 0%, #C4B49A 50%, #B8A484 100%);"></div>
+    <div class="page-header__img">
+      <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&q=80" alt="Summer Nicole on location" />
+    </div>
+    <div class="container">
+      <h1 class="page-header__title fade-in">Hi, I'm Summer.</h1>
+    </div>
   </div>
 
-  <!-- ============================================================
-       HEADLINE
-       ============================================================ -->
-  <section class="section" aria-labelledby="about-heading">
+  <!-- BIO + PORTRAIT -->
+  <section class="section" aria-labelledby="bio-heading">
     <div class="container">
-      <div class="split-block fade-in" style="align-items: flex-start;">
-        <div>
-          <p class="eyebrow" style="margin-bottom: var(--space-5);">The person behind the lens</p>
-          <h1 id="about-heading" class="page-header__title" style="margin-top: 0;">Hi, I'm Summer.</h1>
+      <div class="split-block fade-in">
+        <div class="split-block__img-wrap">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80" alt="Summer Nicole, photographer and filmmaker" loading="lazy" class="split-block__img" />
         </div>
-        <div class="split-text" style="padding-top: var(--space-12);">
-          <p class="body-lg">
-            I grew up in Texas with a grandmother who kept every photograph she ever took, developed in little drugstore envelopes she never threw away. I think that's where it started — this understanding that a photograph isn't just a picture. It's proof that something happened. That it mattered.
+        <div class="split-text">
+          <p class="eyebrow" id="bio-heading">The story</p>
+          <p>
+            I'm a Texas-based photographer and filmmaker, and I've been documenting love stories for going on seven years. I got into this work because I couldn't stop thinking about how quickly the feeling of a day fades. The dress, the venue — those you remember. But the look on his face when he saw you? The way your mom squeezed your hand right before you walked in? Those need a little help.
+          </p>
+          <p>
+            My style is documentary. I stay quiet, I stay close, and I wait for things to unfold naturally rather than engineering moments that look good on paper but feel hollow in real life. I want your photos and films to feel like memory — not a highlight reel. The real stuff. The ordinary beautiful things that are happening all around you while you're too busy living to notice.
+          </p>
+          <p>
+            I fell in love with film photography in college and never really came back. There's something about the warmth of it — the grain, the color — that digital has always been chasing. I bring both to every wedding, because some moments deserve to live in both worlds.
           </p>
           <p style="color: var(--color-text-muted);">
-            I started shooting weddings because I couldn't think of a day more worth saving. There's this moment — right before the doors open, or right after the first dance — where time does something strange. It both stops and races. I live for that moment. My whole job is to be ready for it.
+            I'm based in Texas and I travel a lot. Hill Country weddings, Nashville elopements, Denver mountain ceremonies — I'm in. If your venue is beautiful and your love is real, I want to be there.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       PULL QUOTE
-       ============================================================ -->
-  <section class="section--sm fade-in" aria-label="Philosophy quote">
-    <div class="container--narrow">
-      <div class="pull-quote">
-        <p>I don't just document weddings. I preserve the feeling of them.</p>
-      </div>
+  <!-- PULL QUOTE -->
+  <section class="section section--alt" aria-label="Philosophy">
+    <div class="container--narrow fade-in text-center">
+      <p class="testimonial-quote">
+        I don't just document weddings. I preserve the feeling of them.
+      </p>
     </div>
   </section>
 
-  <!-- ============================================================
-       BIO CONTINUED
-       ============================================================ -->
-  <section class="section--sm" aria-label="Bio continued">
+  <!-- HOW I WORK -->
+  <section class="section" aria-label="How I work">
     <div class="container">
       <div class="split-block split-block--reverse fade-in">
-        <div class="split-text">
-          <p class="body-lg">
-            I work in both film and digital — not because it's a trend, but because some light is too good to trust to just one medium. Film slows me down in the best way. It makes me deliberate. It makes me wait for the right frame instead of shooting a hundred hoping one lands.
-          </p>
-          <p style="color: var(--color-text-muted);">
-            I learned early on that people can tell when they're being watched versus when they're being seen. I try to disappear into a wedding day. To become familiar enough that nobody flinches when I raise my camera. That's the whole trick, really — being present without being in the way.
-          </p>
-          <p style="color: var(--color-text-muted);">
-            When I'm not shooting, I'm probably reading something about light, rewatching old films, or getting too deep into a conversation about why analog still matters. My dog is named Kodak, which should tell you everything you need to know about me.
-          </p>
+        <div class="split-block__img-wrap">
+          <img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde?w=800&q=80" alt="Wedding photography in golden light" loading="lazy" class="split-block__img" />
         </div>
-        <div class="ph ph--portrait" role="img" aria-label="Summer Nicole at work" style="background: linear-gradient(135deg, #E2DAD0 0%, #C9B89A 100%);"></div>
+        <div class="split-text">
+          <p class="eyebrow">How I work</p>
+          <h2 class="display-md" style="font-size: clamp(1.75rem, 3vw, 3rem);">Quiet presence.<br/>Real moments.</h2>
+          <p>
+            On your wedding day I'll be the person you forget is there — until you see the photos. I move light, I stay out of the way, and I never stop watching. The dad fixing his son's collar before the ceremony. The bridesmaids laughing at something only they know. The moment right before you walk through those doors.
+          </p>
+          <p style="color: var(--color-text-muted);">
+            I shoot with a second shooter for most weddings so nothing gets missed. I arrive early and stay late. I care about the whole day, not just the ceremony.
+          </p>
+          <a href="services.html" class="arrow-link">See what's included →</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       SECOND PULL QUOTE
-       ============================================================ -->
-  <section class="section--sm fade-in" aria-label="Approach quote">
-    <div class="container--narrow">
-      <div class="pull-quote">
-        <p>
-          Years from now, you're not going to remember the centerpieces. You're going to remember how it felt. That's what I'm after.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       DETAILS
-       ============================================================ -->
-  <section class="section--sm fade-in" aria-label="Quick details">
-    <div class="container--narrow">
-      <p class="eyebrow" style="margin-bottom: var(--space-6);">A few details</p>
-      <ul class="details-list" role="list">
+  <!-- DETAILS STRIP -->
+  <section class="section--sm section--alt" aria-label="Quick facts">
+    <div class="container">
+      <ul class="details-list fade-in" role="list">
         <li class="details-list__item">Based in Texas</li>
-        <li class="details-list__item">Traveling nationwide</li>
-        <li class="details-list__item">Film + digital</li>
-        <li class="details-list__item">Available 2025 – 2026</li>
-        <li class="details-list__item">Documentary approach</li>
-        <li class="details-list__item">Limited weddings per year</li>
+        <li class="details-list__item">Traveling Nationwide</li>
+        <li class="details-list__item">Film + Digital</li>
+        <li class="details-list__item">Available 2025–2026</li>
+        <li class="details-list__item">Documentary style</li>
+        <li class="details-list__item">Second shooter on select packages</li>
       </ul>
     </div>
   </section>
 
-  <!-- ============================================================
-       TESTIMONIAL
-       ============================================================ -->
-  <section class="section section--dark fade-in" aria-label="Client quote">
-    <div class="container--narrow text-center">
-      <p class="eyebrow" style="margin-bottom: var(--space-8);">From the couples</p>
-      <p class="testimonial-quote" style="color: var(--color-bg);">
-        Summer didn't feel like a vendor on our wedding day. She felt like a friend who happened to be making something beautiful.
-      </p>
-      <span class="testimonial-attr" style="margin-top: var(--space-4); display: block;">— Claire &amp; Jordan · Dallas, TX</span>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       CTA
-       ============================================================ -->
+  <!-- CTA -->
   <section class="cta-banner fade-in" aria-label="Call to action">
-    <p class="eyebrow" style="margin-bottom: var(--space-5);">Ready when you are</p>
+    <p class="eyebrow" style="margin-bottom: var(--space-5);">Ready to connect?</p>
     <h2 class="display-md">Let's work together.</h2>
-    <p>Tell me about your day, your people, the way you love each other.</p>
+    <p>Tell me about your day. Even if it's far out — I'd love to hear it.</p>
     <a href="contact.html" class="btn-outline">Let's Begin →</a>
   </section>
 
-  <!-- ============================================================
-       FOOTER
-       ============================================================ -->
   <footer class="footer" aria-label="Site footer">
     <div class="container--wide">
       <div class="footer__grid">
