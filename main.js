@@ -6,6 +6,44 @@
   'use strict';
 
   /* ----------------------------------------------------------
+     Enhancement 4: Loading Screen
+     Runs first — before any other init — to control overlay.
+     ---------------------------------------------------------- */
+  (function initLoader() {
+    const loader = document.getElementById('loader');
+    if (!loader) return;
+
+    if (sessionStorage.getItem('snf_loaded')) {
+      loader.style.display = 'none';
+      return;
+    }
+
+    const name = loader.querySelector('.loader__name');
+    const line = loader.querySelector('.loader__line');
+
+    // 0ms — name fades in
+    requestAnimationFrame(() => {
+      if (name) name.style.opacity = '1';
+    });
+
+    // 400ms — line grows to match name width
+    setTimeout(() => {
+      if (line && name) line.style.width = name.offsetWidth + 'px';
+    }, 400);
+
+    // 1400ms — loader fades out
+    setTimeout(() => {
+      loader.style.opacity = '0';
+    }, 1400);
+
+    // 1800ms — loader removed, session marked
+    setTimeout(() => {
+      loader.style.display = 'none';
+      sessionStorage.setItem('snf_loaded', '1');
+    }, 1800);
+  })();
+
+  /* ----------------------------------------------------------
      Fade-in via IntersectionObserver
      ---------------------------------------------------------- */
   const fadeObserver = new IntersectionObserver(
@@ -46,12 +84,7 @@
       }
     }
 
-    if (isHeroPage) {
-      nav.classList.add('nav--transparent');
-    } else {
-      nav.classList.add('nav--solid');
-    }
-
+    nav.classList.add(isHeroPage ? 'nav--transparent' : 'nav--solid');
     window.addEventListener('scroll', updateNav, { passive: true });
     updateNav();
   }
@@ -81,14 +114,8 @@
 
   hamburger    && hamburger.addEventListener('click', openOverlay);
   overlayClose && overlayClose.addEventListener('click', closeOverlay);
-
-  overlay && overlay.querySelectorAll('a').forEach((a) => {
-    a.addEventListener('click', closeOverlay);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeOverlay();
-  });
+  overlay && overlay.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeOverlay));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeOverlay(); });
 
   /* ----------------------------------------------------------
      Active nav link
@@ -119,6 +146,45 @@
   }
 
   /* ----------------------------------------------------------
+     Enhancement 2: Hero Text Split Animation (homepage only)
+     ---------------------------------------------------------- */
+  const heroHeadline = document.querySelector('.hero__headline');
+  if (heroHeadline) {
+    // Wrap the first text node ("photo + films") in an animated span
+    let firstText = null;
+    heroHeadline.childNodes.forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+        firstText = node;
+      }
+    });
+
+    const heroEm = heroHeadline.querySelector('em');
+
+    if (firstText) {
+      const spanLeft = document.createElement('span');
+      spanLeft.className = 'hero__split-left';
+      spanLeft.textContent = firstText.textContent;
+      heroHeadline.replaceChild(spanLeft, firstText);
+    }
+
+    // Hide the <br> between the two lines (em becoming block makes it redundant)
+    heroHeadline.childNodes.forEach((node) => {
+      if (node.tagName === 'BR') node.style.display = 'none';
+    });
+
+    if (heroEm) heroEm.classList.add('hero__split-right');
+
+    // Trigger on next frame so CSS transitions fire
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        heroHeadline.querySelectorAll('.hero__split-left, .hero__split-right').forEach((el) => {
+          el.classList.add('hero__split-active');
+        });
+      });
+    });
+  }
+
+  /* ----------------------------------------------------------
      Effect 2: Horizontal scroll — drag to scroll
      ---------------------------------------------------------- */
   const hTrack = document.getElementById('hScrollTrack');
@@ -132,24 +198,48 @@
       startX = e.pageX - hTrack.offsetLeft;
       scrollLeft = hTrack.scrollLeft;
     });
-
-    hTrack.addEventListener('mouseleave', () => {
-      isDown = false;
-      hTrack.classList.remove('dragging');
-    });
-
-    hTrack.addEventListener('mouseup', () => {
-      isDown = false;
-      hTrack.classList.remove('dragging');
-    });
-
+    hTrack.addEventListener('mouseleave', () => { isDown = false; hTrack.classList.remove('dragging'); });
+    hTrack.addEventListener('mouseup',    () => { isDown = false; hTrack.classList.remove('dragging'); });
     hTrack.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       e.preventDefault();
-      const x    = e.pageX - hTrack.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      hTrack.scrollLeft = scrollLeft - walk;
+      hTrack.scrollLeft = scrollLeft - (e.pageX - hTrack.offsetLeft - startX) * 1.5;
     });
+  }
+
+  /* ----------------------------------------------------------
+     Enhancement 3: Stats Counter
+     ---------------------------------------------------------- */
+  const statsSection = document.querySelector('.stats-section');
+  if (statsSection) {
+    function easeOutQuart(t) {
+      return 1 - Math.pow(1 - t, 4);
+    }
+
+    function animateCount(el) {
+      const target   = parseInt(el.dataset.target, 10);
+      const suffix   = el.dataset.suffix || '';
+      const duration = 1800;
+      const start    = performance.now();
+
+      (function tick(now) {
+        const elapsed  = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        el.textContent = Math.round(easeOutQuart(progress) * target) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      })(start);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.stat-count').forEach(animateCount);
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    statsObserver.observe(statsSection);
   }
 
   /* ----------------------------------------------------------
@@ -182,16 +272,11 @@
       btn.addEventListener('click', () => {
         filterBtns.forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
-
         const filter = btn.dataset.filter;
         document.querySelectorAll('.pg-item').forEach((item) => {
           const show = filter === 'all' || item.dataset.category === filter;
           item.style.display = show ? '' : 'none';
-          if (show) {
-            requestAnimationFrame(() => {
-              item.style.opacity = '1';
-            });
-          }
+          if (show) requestAnimationFrame(() => { item.style.opacity = '1'; });
         });
       });
     });
@@ -209,5 +294,54 @@
       }
     });
   });
+
+  /* ----------------------------------------------------------
+     Enhancement 1: Cursor Trail (desktop only)
+     ---------------------------------------------------------- */
+  if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
+    const dot = document.createElement('div');
+    dot.id = 'cursor-dot';
+    document.body.appendChild(dot);
+
+    let mouseX = -100, mouseY = -100;
+    let dotX   = -100, dotY   = -100;
+    let scale  = 1,    targetScale = 1;
+    let fadeTimer = null;
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    (function animateDot() {
+      dotX  = lerp(dotX,  mouseX, 0.12);
+      dotY  = lerp(dotY,  mouseY, 0.12);
+      scale = lerp(scale, targetScale, 0.15);
+
+      dot.style.left      = dotX + 'px';
+      dot.style.top       = dotY + 'px';
+      dot.style.transform = `translate(-50%, -50%) scale(${scale})`;
+
+      requestAnimationFrame(animateDot);
+    })();
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.opacity = '0.6';
+
+      clearTimeout(fadeTimer);
+      fadeTimer = setTimeout(() => { dot.style.opacity = '0'; }, 300);
+    });
+
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest('a') || e.target.tagName === 'IMG') {
+        targetScale = 2.5;
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest('a') || e.target.tagName === 'IMG') {
+        targetScale = 1;
+      }
+    });
+  }
 
 })();

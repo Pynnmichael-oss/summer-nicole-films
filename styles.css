@@ -1820,3 +1820,156 @@ h1, h2, h3, h4, h5 {
     font-size: 8px;
   }
 }
+
+/* ============================================================
+   Cursor Trail
+   ============================================================ */
+#cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #C4A882;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  will-change: left, top, transform;
+}
+
+/* ============================================================
+   Hero Text Split Animation
+   ============================================================ */
+.hero__split-left {
+  display: block;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.hero__split-right {
+  display: block;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s,
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s;
+}
+
+.hero__split-left.hero__split-active,
+.hero__split-right.hero__split-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================================
+   Stats Counter Section
+   ============================================================ */
+.stats-section {
+  background: var(--color-bg-warm);
+}
+
+.stats-rule {
+  height: 1px;
+  background: var(--color-rule);
+  width: 100%;
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-20) var(--space-8);
+}
+
+.stat-item {
+  text-align: center;
+  padding: 0 clamp(var(--space-8), 5vw, var(--space-16));
+  flex: 1;
+  max-width: 320px;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 7vw, 80px);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-2);
+}
+
+.stat-dot {
+  font-family: var(--font-display);
+  font-size: var(--size-xl);
+  color: var(--color-accent);
+  line-height: 1.2;
+  margin-bottom: var(--space-2);
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 72px;
+  background: var(--color-rule);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .stats-row {
+    flex-direction: column;
+    gap: var(--space-10);
+    padding: var(--space-16) var(--space-8);
+  }
+
+  .stat-divider {
+    width: 32px;
+    height: 1px;
+  }
+}
+
+/* ============================================================
+   Loader
+   ============================================================ */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease;
+}
+
+.loader__inner {
+  text-align: center;
+}
+
+.loader__name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 28px;
+  letter-spacing: 0.2em;
+  color: #1A1A18;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.loader__line {
+  height: 1px;
+  background: #C4A882;
+  width: 0;
+  margin: 16px auto 0;
+  transition: width 1.0s cubic-bezier(0.4, 0, 0.2, 1);
+}
