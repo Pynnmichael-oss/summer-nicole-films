@@ -6,41 +6,93 @@
   'use strict';
 
   /* ----------------------------------------------------------
-     Enhancement 4: Loading Screen
-     Runs first — before any other init — to control overlay.
+     Enhancement 4: Loading Screen — Cinematic Curtain
+     Injects all HTML via JS. Skipped after first visit
+     (sessionStorage key 'snf_loaded').
      ---------------------------------------------------------- */
   (function initLoader() {
-    const loader = document.getElementById('loader');
-    if (!loader) return;
+    if (sessionStorage.getItem('snf_loaded')) return;
 
-    if (sessionStorage.getItem('snf_loaded')) {
-      loader.style.display = 'none';
-      return;
-    }
+    // Build loader DOM
+    const loader   = document.createElement('div');
+    loader.id      = 'loader';
+    loader.setAttribute('aria-hidden', 'true');
 
-    const name = loader.querySelector('.loader__name');
-    const line = loader.querySelector('.loader__line');
+    const panelL   = document.createElement('div');
+    panelL.id      = 'loader-left';
 
-    // 0ms — name fades in
-    requestAnimationFrame(() => {
-      if (name) name.style.opacity = '1';
-    });
+    const panelR   = document.createElement('div');
+    panelR.id      = 'loader-right';
 
-    // 400ms — line grows to match name width
+    const content  = document.createElement('div');
+    content.id     = 'loader-content';
+
+    const logo     = document.createElement('div');
+    logo.id        = 'loader-logo';
+    logo.textContent = 'Summer Nicole Films';
+
+    const line     = document.createElement('div');
+    line.id        = 'loader-line';
+
+    const tagline  = document.createElement('div');
+    tagline.id     = 'loader-tagline';
+    tagline.textContent = 'for the lovers of nostalgia';
+
+    content.appendChild(logo);
+    content.appendChild(line);
+    content.appendChild(tagline);
+    loader.appendChild(panelL);
+    loader.appendChild(panelR);
+    loader.appendChild(content);
+    document.body.insertBefore(loader, document.body.firstChild);
+
+    // Page veil: sits behind loader (z-index 9999), above page content.
+    // Fades out as curtain opens to give the page a clean reveal.
+    const veil = document.createElement('div');
+    veil.id    = 'page-veil';
+    document.body.insertBefore(veil, document.body.firstChild);
+
+    // ── Animation sequence ─────────────────────────────────
+    // 200ms  — logo fades + slides up into place  (0.6s)
     setTimeout(() => {
-      if (line && name) line.style.width = name.offsetWidth + 'px';
-    }, 400);
+      logo.style.opacity   = '1';
+      logo.style.transform = 'translateY(0)';
+    }, 200);
 
-    // 1400ms — loader fades out
+    // 700ms  — line grows to 180px                (0.6s)
     setTimeout(() => {
-      loader.style.opacity = '0';
-    }, 1400);
+      line.style.width = '180px';
+    }, 700);
 
-    // 1800ms — loader removed, session marked
+    // 1100ms — tagline fades in                   (0.5s)
     setTimeout(() => {
-      loader.style.display = 'none';
-      sessionStorage.setItem('snf_loaded', '1');
+      tagline.style.opacity = '1';
+    }, 1100);
+
+    // 1800ms — all content fades out together     (0.4s)
+    setTimeout(() => {
+      logo.style.opacity    = '0';
+      line.style.opacity    = '0';
+      tagline.style.opacity = '0';
     }, 1800);
+
+    // 2000ms — curtain panels slide apart          (0.8s cubic)
+    setTimeout(() => {
+      panelL.style.transform = 'translateX(-100%)';
+      panelR.style.transform = 'translateX(100%)';
+    }, 2000);
+
+    // 2200ms — veil fades, page content appears   (0.6s)
+    setTimeout(() => {
+      veil.style.opacity = '0';
+    }, 2200);
+
+    // 2800ms — clean up DOM, mark session
+    setTimeout(() => {
+      loader.remove();
+      veil.remove();
+      sessionStorage.setItem('snf_loaded', '1');
+    }, 2800);
   })();
 
   /* ----------------------------------------------------------
@@ -150,7 +202,6 @@
      ---------------------------------------------------------- */
   const heroHeadline = document.querySelector('.hero__headline');
   if (heroHeadline) {
-    // Wrap the first text node ("photo + films") in an animated span
     let firstText = null;
     heroHeadline.childNodes.forEach((node) => {
       if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
@@ -167,14 +218,12 @@
       heroHeadline.replaceChild(spanLeft, firstText);
     }
 
-    // Hide the <br> between the two lines (em becoming block makes it redundant)
     heroHeadline.childNodes.forEach((node) => {
       if (node.tagName === 'BR') node.style.display = 'none';
     });
 
     if (heroEm) heroEm.classList.add('hero__split-right');
 
-    // Trigger on next frame so CSS transitions fire
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         heroHeadline.querySelectorAll('.hero__split-left, .hero__split-right').forEach((el) => {
@@ -195,7 +244,7 @@
     hTrack.addEventListener('mousedown', (e) => {
       isDown = true;
       hTrack.classList.add('dragging');
-      startX = e.pageX - hTrack.offsetLeft;
+      startX     = e.pageX - hTrack.offsetLeft;
       scrollLeft = hTrack.scrollLeft;
     });
     hTrack.addEventListener('mouseleave', () => { isDown = false; hTrack.classList.remove('dragging'); });
@@ -212,34 +261,28 @@
      ---------------------------------------------------------- */
   const statsSection = document.querySelector('.stats-section');
   if (statsSection) {
-    function easeOutQuart(t) {
-      return 1 - Math.pow(1 - t, 4);
-    }
+    function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
 
     function animateCount(el) {
       const target   = parseInt(el.dataset.target, 10);
       const suffix   = el.dataset.suffix || '';
       const duration = 1800;
       const start    = performance.now();
-
       (function tick(now) {
-        const elapsed  = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        el.textContent = Math.round(easeOutQuart(progress) * target) + suffix;
-        if (progress < 1) requestAnimationFrame(tick);
+        const p = Math.min((now - start) / duration, 1);
+        el.textContent = Math.round(easeOutQuart(p) * target) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
       })(start);
     }
 
-    const statsObserver = new IntersectionObserver((entries) => {
+    new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.querySelectorAll('.stat-count').forEach(animateCount);
-          statsObserver.unobserve(entry.target);
+          entry.target._statsObserver && entry.target._statsObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.4 });
-
-    statsObserver.observe(statsSection);
+    }, { threshold: 0.4 }).observe(statsSection);
   }
 
   /* ----------------------------------------------------------
@@ -250,16 +293,11 @@
       const item   = btn.closest('.faq-item');
       const answer = item.querySelector('.faq-answer');
       const isOpen = item.classList.contains('open');
-
       document.querySelectorAll('.faq-item.open').forEach((openItem) => {
         openItem.classList.remove('open');
         openItem.querySelector('.faq-answer').classList.remove('open');
       });
-
-      if (!isOpen) {
-        item.classList.add('open');
-        answer.classList.add('open');
-      }
+      if (!isOpen) { item.classList.add('open'); answer.classList.add('open'); }
     });
   });
 
@@ -288,59 +326,47 @@
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
       const target = document.querySelector(anchor.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
 
   /* ----------------------------------------------------------
-     Enhancement 1: Cursor Trail (desktop only)
+     Enhancement 1: Cursor Trail (desktop / pointer:fine only)
      ---------------------------------------------------------- */
-  if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
-    const dot = document.createElement('div');
-    dot.id = 'cursor-dot';
-    document.body.appendChild(dot);
+  if (!window.matchMedia('(pointer: coarse)').matches) {
+    const cursor = document.createElement('div');
+    cursor.id    = 'cursor-trail';
+    document.body.appendChild(cursor);
 
-    let mouseX = -100, mouseY = -100;
-    let dotX   = -100, dotY   = -100;
-    let scale  = 1,    targetScale = 1;
-    let fadeTimer = null;
+    let mouseX = 0, mouseY = 0;
+    let lerpX  = 0, lerpY  = 0;
 
-    function lerp(a, b, t) { return a + (b - a) * t; }
-
-    (function animateDot() {
-      dotX  = lerp(dotX,  mouseX, 0.12);
-      dotY  = lerp(dotY,  mouseY, 0.12);
-      scale = lerp(scale, targetScale, 0.15);
-
-      dot.style.left      = dotX + 'px';
-      dot.style.top       = dotY + 'px';
-      dot.style.transform = `translate(-50%, -50%) scale(${scale})`;
-
-      requestAnimationFrame(animateDot);
+    // rAF loop — always running, lerps position each frame
+    (function loop() {
+      lerpX += (mouseX - lerpX) * 0.1;
+      lerpY += (mouseY - lerpY) * 0.1;
+      cursor.style.left = lerpX + 'px';
+      cursor.style.top  = lerpY + 'px';
+      requestAnimationFrame(loop);
     })();
 
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      dot.style.opacity = '0.6';
-
-      clearTimeout(fadeTimer);
-      fadeTimer = setTimeout(() => { dot.style.opacity = '0'; }, 300);
+      cursor.style.opacity = '0.7';
     });
 
+    // Fade on window leave
+    document.addEventListener('mouseleave', () => {
+      cursor.style.opacity = '0';
+    });
+
+    // Grow on interactive elements
     document.addEventListener('mouseover', (e) => {
-      if (e.target.closest('a') || e.target.tagName === 'IMG') {
-        targetScale = 2.5;
-      }
+      if (e.target.closest('a, button, img')) cursor.classList.add('cursor-grow');
     });
-
     document.addEventListener('mouseout', (e) => {
-      if (e.target.closest('a') || e.target.tagName === 'IMG') {
-        targetScale = 1;
-      }
+      if (e.target.closest('a, button, img')) cursor.classList.remove('cursor-grow');
     });
   }
 
